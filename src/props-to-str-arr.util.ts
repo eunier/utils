@@ -1,7 +1,8 @@
 import { BREAK_LINE, OBJECT_PROPERTIES } from './constants';
+import { FunctionExpression } from './types';
 
 export const propsToStrArr = <T>(
-  expression: (object: T) => void,
+  expression: FunctionExpression<T>,
   opts: { maxLength: number; sliceAt: 'start' | 'end' } = {
     maxLength: Infinity,
     sliceAt: 'start',
@@ -14,17 +15,25 @@ export const propsToStrArr = <T>(
   const codeStr = expression.toString();
 
   const codeStrFormatted = codeStr
-    .replace(BREAK_LINE, '')
-    .replace("['", '.')
-    .replace("']", '.');
+    .replaceAll(BREAK_LINE, '')
+    .replaceAll('"', "'")
+    .replaceAll("['", '.')
+    .replaceAll("']", '.');
 
   const match = codeStrFormatted.match(OBJECT_PROPERTIES);
+
+  const path = codeStrFormatted
+    .split('.')
+    .slice(1)
+    .map(str => str.trim());
 
   if (!match) {
     throw Error(`There is no properties on expression \'${codeStr}\'.`);
   }
 
-  const propsStrArr = match.map(prop => prop.replace('.', ''));
+  const propsStrArr = path
+    .map(prop => prop.replaceAll('.', ''))
+    .filter(prop => prop !== '');
 
   if (opts.maxLength >= propsStrArr.length) {
     return propsStrArr;
