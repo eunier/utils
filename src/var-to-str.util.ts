@@ -1,4 +1,4 @@
-import { WORD } from '../constants';
+import { WORD } from './constants';
 
 export const varToStr = (expression: () => void): string => {
   const codeStr = expression.toString();
