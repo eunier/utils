@@ -1,9 +1,9 @@
-import { propToString } from '.';
+import { propToStr } from '.';
 
-describe(propToString.name, () => {
+describe(propToStr.name, () => {
   test('should return `prop` from object with a prop named `prop`', () => {
     const obj = { prop: 'val' };
-    expect(propToString(() => obj.prop)).toEqual('prop');
+    expect(propToStr(() => obj.prop)).toEqual('prop');
   });
 
   test(
@@ -11,7 +11,7 @@ describe(propToString.name, () => {
       'using `<typeof obj>`',
     () => {
       const obj = { prop: 'val' };
-      expect(propToString<typeof obj>(t => t.prop)).toEqual('prop');
+      expect(propToStr<typeof obj>(t => t.prop)).toEqual('prop');
     }
   );
 
@@ -23,9 +23,9 @@ describe(propToString.name, () => {
         prop: string;
       };
 
-      expect(propToString<SomeType>(t => t.prop)).toEqual('prop');
+      expect(propToStr<SomeType>(t => t.prop)).toEqual('prop');
     }
   );
 
-  // TODO ['prop'] 
+  // TODO ['prop']
 });
