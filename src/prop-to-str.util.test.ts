@@ -1,6 +1,6 @@
 import { propToStr } from '.';
 
-describe(propToStr.name, () => {
+describe.skip(propToStr.name, () => {
   test('should return `prop` from object with a prop named `prop`', () => {
     const obj = { prop: 'val' };
     expect(propToStr(() => obj.prop)).toEqual('prop');
