@@ -2,6 +2,7 @@ export * from './case-switch.util';
 export * from './cln.util';
 export * from './infinity-generator.util';
 export * from './match.util';
+export * from './pick-random.util';
 export * from './prop-to-str.util';
 export * from './props-to-str-arr.util';
 export * from './rand-num-array.util';
