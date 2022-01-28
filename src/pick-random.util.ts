@@ -1,11 +1,6 @@
 import { random } from 'lodash';
-import { ArrayFilterPredicate } from './types/array-filter-predicate.type';
 
-export const pickRandom = <T>(
-  source: T[],
-  { filterFn }: { filterFn?: ArrayFilterPredicate<T> }
-): T => {
-  if (filterFn) source.filter(filterFn);
+export const pickRandom = <T>(source: T[]): T => {
   return source[random(0, source.length - 1)];
 };
 
